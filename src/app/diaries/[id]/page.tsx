@@ -15,6 +15,9 @@ export default async function DiaryDetails(props: Params) {
     _id: new ObjectId(id),
   })) as dbDiariesType;
   const diary = serializeDiary(rawDiary);
+  if (!diary) {
+    return <div>Diary not found</div>;
+  }
   return (
     <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6">
       <DiaryCard detailsPage={true} diary={diary} />
