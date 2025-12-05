@@ -2,11 +2,8 @@ import { getCollection } from "@/lib/db";
 import { NextResponse } from "next/server";
 import { ObjectId } from "mongodb";
 
-export async function GET(
-  req: Request,
-  { params }: { params: { id: string } }
-) {
-  const { id } = await params;
+export async function GET(req: Request, context: { params: { id: string } }) {
+  const { id } = context.params;
   const usersCollection = await getCollection("users");
   const user = await usersCollection?.findOne({ _id: new ObjectId(id) });
   if (!user)
