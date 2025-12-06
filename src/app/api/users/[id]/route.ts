@@ -2,10 +2,13 @@ import { getCollection } from "@/lib/db";
 import { NextResponse } from "next/server";
 import { ObjectId } from "mongodb";
 
-export async function GET(req: Request, context: any) {
-  const { params } = context as { params: { id: string } };
+export async function GET(
+  req: Request,
+  { params }: { params: Promise<{ id: string }> }
+) {
+  const resolvedParams = await params;
 
-  const { id } = params;
+  const id = resolvedParams.id;
 
   const usersCollection = await getCollection("users");
   const user = await usersCollection?.findOne({ _id: new ObjectId(id) });

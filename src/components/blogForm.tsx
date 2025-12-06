@@ -3,6 +3,7 @@
 import { useActionState } from "react";
 import { Button } from "./ui/button";
 import { PostType } from "@/app/shared/types/posts";
+import { FormState } from "@/app/shared/types/forms";
 
 export default function BlogForm({
   handler,
@@ -13,7 +14,10 @@ export default function BlogForm({
   post?: PostType;
   onClose: () => void;
 }) {
-  const [state, action, isPending] = useActionState(handler, undefined);
+  const [state, action, isPending] = useActionState<FormState>(
+    handler,
+    undefined
+  );
 
   return (
     <div className="fixed inset-0 z-50 flex items-center justify-center">

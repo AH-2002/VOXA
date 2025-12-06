@@ -7,11 +7,12 @@ import { getCollection } from "@/lib/db";
 import getAuthUser from "@/lib/getAuthUser";
 import { serializePost, serializeUser } from "@/lib/serialize";
 import { ObjectId } from "mongodb";
-type Params = {
-  params: { id: string };
-};
-export default async function ProfilePage(props: Params) {
-  const { params } = await props;
+
+export default async function ProfilePage({
+  params,
+}: {
+  params: Promise<{ id: string }>;
+}) {
   const { id } = await params;
   const usersCollection = await getCollection("users");
   const rawUser = (await usersCollection?.findOne({
