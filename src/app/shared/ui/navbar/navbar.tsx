@@ -92,12 +92,12 @@ export default function Navbar({ userId }: { userId: string | undefined }) {
             )}
 
             {!userId && (
-              <div className="flex items-center gap-x-5 ml-auto">
+              <div className="flex items-center gap-x-5 ml-auto dark:text-gray-200">
                 {authLinks.map((link: navLinkType) => (
                   <Link
                     key={link.href}
                     href={link.href}
-                    className={`transition-colors duration-200 ${isActive(
+                    className={`transition-colors duration-200 dark:text-gray-200 dark:hover:text-blue-600 ${isActive(
                       link.href
                     )}`}
                   >

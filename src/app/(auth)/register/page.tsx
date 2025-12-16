@@ -8,9 +8,9 @@ export default function RegisterPage() {
   const [state, action, isPending] = useActionState(register, undefined);
 
   return (
-    <div className="min-h-screen flex items-center justify-center bg-gray-100 px-4">
-      <div className="w-full max-w-md bg-white rounded-lg shadow-lg p-8">
-        <h1 className="text-2xl font-bold text-center text-gray-800 mb-6">
+    <div className="min-h-screen flex items-center justify-center bg-gray-100 px-4 dark:bg-zinc-900">
+      <div className="w-full max-w-md bg-white rounded-lg shadow-lg p-8 dark:bg-zinc-800">
+        <h1 className="text-2xl font-bold text-center text-gray-800 mb-6 dark:text-gray-200">
           Create Your Account
         </h1>
 
@@ -19,17 +19,20 @@ export default function RegisterPage() {
             <div className="flex-1 flex flex-col w-full">
               <label
                 htmlFor="first_name"
-                className="mb-1 text-gray-700 font-medium"
+                className="mb-1 text-gray-700 font-medium dark:text-gray-200"
               >
                 First Name
               </label>
               <input
                 type="text"
                 name="first_name"
-                className="w-full border border-gray-300 rounded-md px-4 py-2 focus:outline-none focus:ring-2 focus:ring-blue-400 focus:border-transparent transition"
+                className="w-full border border-gray-300 rounded-md px-4 py-2 focus:outline-none focus:ring-2 focus:ring-blue-400 focus:border-transparent transition dark:bg-zinc-800 dark:text-gray-200 dark:placeholder:text-gray-400 dark:border-zinc-700"
               />
               {state?.errors?.first_name?.map((err, idx) => (
-                <p key={idx} className="text-red-500 text-sm mt-1">
+                <p
+                  key={idx}
+                  className="text-red-500 text-sm mt-1 dark:text-red-400"
+                >
                   {err}
                 </p>
               ))}
@@ -38,17 +41,20 @@ export default function RegisterPage() {
             <div className="flex-1 flex flex-col w-full">
               <label
                 htmlFor="last_name"
-                className="mb-1 text-gray-700 font-medium"
+                className="mb-1 text-gray-700 font-medium dark:text-gray-200"
               >
                 Last Name
               </label>
               <input
                 type="text"
                 name="last_name"
-                className="w-full border border-gray-300 rounded-md px-4 py-2 focus:outline-none focus:ring-2 focus:ring-blue-400 focus:border-transparent transition"
+                className="w-full border border-gray-300 rounded-md px-4 py-2 focus:outline-none focus:ring-2 focus:ring-blue-400 focus:border-transparent transition dark:bg-zinc-800 dark:text-gray-200 dark:placeholder:text-gray-400 dark:border-zinc-700"
               />
-              {state?.errors?.first_name?.map((err, idx) => (
-                <p key={idx} className="text-red-500 text-sm mt-1">
+              {state?.errors?.last_name?.map((err, idx) => (
+                <p
+                  key={idx}
+                  className="text-red-500 text-sm mt-1 dark:text-red-400"
+                >
                   {err}
                 </p>
               ))}
@@ -56,24 +62,29 @@ export default function RegisterPage() {
           </div>
 
           <div className="flex flex-col">
-            <label htmlFor="email" className="mb-1 text-gray-700 font-medium">
+            <label
+              htmlFor="email"
+              className="mb-1 text-gray-700 font-medium dark:text-gray-200"
+            >
               Email
             </label>
             <input
               type="text"
               name="email"
               defaultValue={String(state?.email ?? "")}
-              className="border border-gray-300 rounded-md px-4 py-2 focus:outline-none focus:ring-2 focus:ring-blue-400 focus:border-transparent transition"
+              className="border border-gray-300 rounded-md px-4 py-2 focus:outline-none focus:ring-2 focus:ring-blue-400 focus:border-transparent transition dark:bg-zinc-800 dark:text-gray-200 dark:placeholder:text-gray-400 dark:border-zinc-700"
             />
             {state?.errors?.email && (
-              <p className="text-red-500 text-sm mt-1">{state.errors.email}</p>
+              <p className="text-red-500 text-sm mt-1 dark:text-red-400">
+                {state.errors.email}
+              </p>
             )}
           </div>
 
           <div className="flex flex-col">
             <label
               htmlFor="password"
-              className="mb-1 text-gray-700 font-medium"
+              className="mb-1 text-gray-700 font-medium dark:text-gray-200"
             >
               Password
             </label>
@@ -81,10 +92,10 @@ export default function RegisterPage() {
               type="password"
               name="password"
               defaultValue={String(state?.password ?? "")}
-              className="border border-gray-300 rounded-md px-4 py-2 focus:outline-none focus:ring-2 focus:ring-blue-400 focus:border-transparent transition"
+              className="border border-gray-300 rounded-md px-4 py-2 focus:outline-none focus:ring-2 focus:ring-blue-400 focus:border-transparent transition dark:bg-zinc-800 dark:text-gray-200 dark:placeholder:text-gray-400 dark:border-zinc-700"
             />
             {state?.errors?.password && (
-              <div className="text-red-500 text-sm mt-1">
+              <div className="text-red-500 text-sm mt-1 dark:text-red-400">
                 <p>Password must:</p>
                 <ul className="list-disc list-inside ml-4">
                   {state.errors.password.map((err, idx) => (
@@ -98,7 +109,7 @@ export default function RegisterPage() {
           <div className="flex flex-col">
             <label
               htmlFor="confirmPassword"
-              className="mb-1 text-gray-700 font-medium"
+              className="mb-1 text-gray-700 font-medium dark:text-gray-200"
             >
               Confirm Password
             </label>
@@ -106,10 +117,13 @@ export default function RegisterPage() {
               type="password"
               name="confirmPassword"
               defaultValue={String(state?.confirmPassword ?? "")}
-              className="border border-gray-300 rounded-md px-4 py-2 focus:outline-none focus:ring-2 focus:ring-blue-400 focus:border-transparent transition"
+              className="border border-gray-300 rounded-md px-4 py-2 focus:outline-none focus:ring-2 focus:ring-blue-400 focus:border-transparent transition dark:bg-zinc-800 dark:text-gray-200 dark:placeholder:text-gray-400 dark:border-zinc-700"
             />
             {state?.errors?.confirmPassword?.map((err, idx) => (
-              <p key={idx} className="text-red-500 text-sm mt-1">
+              <p
+                key={idx}
+                className="text-red-500 text-sm mt-1 dark:text-red-400"
+              >
                 {err}
               </p>
             ))}
@@ -119,13 +133,13 @@ export default function RegisterPage() {
             <Button
               type="submit"
               disabled={isPending}
-              className="w-full md:w-auto bg-blue-500 text-white font-semibold px-6 py-2 rounded-md shadow hover:bg-blue-600 focus:outline-none focus:ring-2 focus:ring-blue-400 transition disabled:opacity-50"
+              className="w-full md:w-auto bg-blue-500 text-white font-semibold px-6 py-2 rounded-md shadow hover:bg-blue-600 focus:outline-none focus:ring-2 focus:ring-blue-400 transition disabled:opacity-50 dark:bg-blue-600 dark:hover:bg-blue-700"
             >
               {isPending ? "Loading..." : "Register"}
             </Button>
             <Link
               href="/login"
-              className="text-blue-500 hover:underline text-sm md:text-base text-center"
+              className="text-blue-500 hover:underline text-sm md:text-base text-center dark:text-blue-400"
             >
               Already have an account? Login
             </Link>
