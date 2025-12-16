@@ -42,7 +42,7 @@ export default async function ProfilePage({
 
       {user && <ProfileInfoCard user={user} loggedIn={loggedIn} />}
       <div className="flex justify-between w-[75%] mx-auto">
-        <h3 className="text-xl font-semibold mb-4 text-gray-800">Posts</h3>
+        <h3 className="text-xl font-semibold mb-4 text-gray-800 dark:text-gray-200">Posts</h3>
         <PostButton label="Add Post" variant="submit" />
       </div>
       <div className="space-y-4">

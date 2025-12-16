@@ -16,7 +16,7 @@ export default async function DiariesPage() {
   return (
     <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6">
       <div className="flex items-center justify-between mb-8">
-        <h1 className="text-3xl font-bold text-gray-800">My Diaries</h1>
+        <h1 className="text-3xl font-bold text-gray-800 dark:text-gray-200">My Diaries</h1>
 
         <DiariesButton variant="submit" label="Add diary" />
       </div>

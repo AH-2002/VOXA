@@ -126,9 +126,9 @@ export default function PostCard({
   }, [comments]);
 
   return (
-    <div className="border p-5 rounded-xl shadow-sm hover:shadow-md transition-all bg-white w-[75%] mx-auto">
+    <div className="border p-5 rounded-xl shadow-sm hover:shadow-md transition-all bg-white w-[75%] mx-auto dark:bg-gray-800">
       <div className="flex gap-x-5 relative">
-        <div className="flex-shrink-0 w-14 h-14 rounded-full bg-blue-100 flex items-center justify-center text-blue-600 text-xl font-bold shadow-inner overflow-hidden">
+        <div className="flex-shrink-0 w-14 h-14 rounded-full bg-blue-100 flex items-center justify-center text-blue-600 text-xl font-bold shadow-inner overflow-hidden dark:bg-gray-600">
           {userLoading ? (
             <PictureSkeleton />
           ) : (
@@ -140,17 +140,17 @@ export default function PostCard({
           )}
         </div>
         <div>
-          <p className="text-gray-400 text-xs mb-2">
+          <p className="text-gray-400 text-xs mb-2 dark:text-gray-300">
             {post.createdAt ? formatDate(post.createdAt) : <LineSkeleton />}
           </p>
           {postUser ? (
-            <h2 className="text-lg font-semibold text-gray-700 leading-tight">
+            <h2 className="text-lg font-semibold text-gray-700 leading-tight dark:text-gray-200">
               {`${postUser.first_name} ${postUser.last_name}`}
             </h2>
           ) : (
             <LineSkeleton />
           )}
-          <div className="text-gray-700 text-base mb-4">
+          <div className="text-gray-700 text-base mb-4 dark:text-gray-300">
             {post.content ? post.content : <LineSkeleton />}
           </div>
         </div>
@@ -158,7 +158,7 @@ export default function PostCard({
         {postOwner && (
           <div className="absolute top-0 right-0">
             <button
-              className="text-2xl text-gray-700 hover:text-blue-500 transition-colors duration-200"
+              className="text-2xl text-gray-700 hover:text-blue-500 transition-colors duration-200 dark:text-gray-300 hover:dark:text-blue-400 dark:hover:dark:text-blue-300"
               onClick={() => setMenuOpen(!menuOpen)}
             >
               ⋮
@@ -166,7 +166,7 @@ export default function PostCard({
             {menuOpen && (
               <div
                 ref={dropdownRef}
-                className="cursor-pointer absolute right-0 mt-2 w-36 bg-white border shadow-md rounded-md overflow-hidden z-50"
+                className="cursor-pointer absolute right-0 mt-2 w-36 bg-white border shadow-md rounded-md overflow-hidden z-50 dark:bg-gray-700"
               >
                 <PostButton label="Update Post" post={post} />
                 <form action={deletePost}>
@@ -175,7 +175,7 @@ export default function PostCard({
                     name="postId"
                     value={post._id.toString()}
                   />
-                  <button className="w-full flex gap-x-5 text-left px-5 py-2 hover:bg-gray-100 text-red-500">
+                  <button className="w-full flex gap-x-5 text-left px-5 py-2 hover:bg-gray-100 text-red-500 dark:hover:bg-gray-600 dark:text-red-400">
                     Delete
                   </button>
                 </form>
@@ -191,13 +191,13 @@ export default function PostCard({
           disabled={loading}
           className={`px-4 py-1 rounded-full font-medium transition ${
             likes.includes(userId ?? "")
-              ? "bg-red-500 text-white hover:bg-red-600"
-              : "bg-gray-200 text-gray-800 hover:bg-gray-300"
+              ? "bg-red-500 text-white hover:bg-red-600 dark:bg-red-600 dark:hover:bg-red-700"
+              : "bg-gray-200 text-gray-800 hover:bg-gray-300 dark:bg-gray-600 dark:text-gray-200 dark:hover:bg-gray-500"
           }`}
         >
           {likes.includes(userId ?? "") ? "❤️ Unlike" : "🤍 Like"}
         </button>
-        <span className="text-gray-600 font-medium">
+        <span className="text-gray-600 font-medium dark:text-gray-400">
           {likes.length} {likes.length === 1 ? "like" : "likes"}
         </span>
       </div>
@@ -211,12 +211,12 @@ export default function PostCard({
           value={newComment}
           onChange={(e) => setNewComment(e.target.value)}
           placeholder="Write a comment..."
-          className="flex-1 border rounded-full px-4 py-2 text-sm focus:outline-none focus:ring focus:ring-blue-300"
+          className="flex-1 border rounded-full px-4 py-2 text-sm focus:outline-none focus:ring focus:ring-blue-300 dark:bg-gray-700 dark:text-gray-200"
         />
         <button
           type="submit"
           disabled={commentLoading}
-          className="px-4 py-2 bg-blue-500 text-white rounded-full hover:bg-blue-600 disabled:bg-gray-300"
+          className="px-4 py-2 bg-blue-500 text-white rounded-full hover:bg-blue-600 disabled:bg-gray-300 dark:disabled:bg-gray-600"
         >
           Comment
         </button>
@@ -224,7 +224,7 @@ export default function PostCard({
 
       <div className="mt-4 space-y-3">
         {comments.length === 0 && (
-          <p className="text-gray-500 text-sm">No comments yet.</p>
+          <p className="text-gray-500 text-sm dark:text-gray-400">No comments yet.</p>
         )}
 
         {comments.map((c) => {
@@ -232,9 +232,9 @@ export default function PostCard({
           return (
             <div
               key={c._id}
-              className="flex items-start gap-3 border rounded-lg p-3 bg-gray-50"
+              className="flex items-start gap-3 border rounded-lg p-3 bg-gray-50 dark:bg-gray-700"
             >
-              <div className="flex-shrink-0 w-8 h-8 rounded-full overflow-hidden bg-blue-100">
+              <div className="flex-shrink-0 w-8 h-8 rounded-full overflow-hidden bg-blue-100 dark:bg-gray-600">
                 {author ? (
                   <img
                     src={author.profile_picture || "/user-picture.webp"}
@@ -246,15 +246,15 @@ export default function PostCard({
                 )}
               </div>
               <div className="flex-1">
-                <div className="text-sm font-semibold text-gray-700">
+                <div className="text-sm font-semibold text-gray-700 dark:text-gray-200">
                   {author ? (
                     `${author.first_name} ${author.last_name}`
                   ) : (
                     <LineSkeleton />
                   )}
                 </div>
-                <p className="text-sm text-gray-800">{c.content}</p>
-                <p className="text-xs text-gray-400 mt-1">
+                <p className="text-sm text-gray-800 dark:text-gray-200">{c.content}</p>
+                <p className="text-xs text-gray-400 mt-1 dark:text-gray-400">
                   {formatDate(c.createdAt)}
                 </p>
               </div>

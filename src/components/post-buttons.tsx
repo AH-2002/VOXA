@@ -37,7 +37,7 @@ export default function PostButton({
         </Button>
       ) : (
         <button
-          className="w-full flex gap-x-5 text-left px-5 py-2 hover:bg-gray-100"
+          className="w-full flex gap-x-5 text-left px-5 py-2 hover:bg-gray-100 dark:hover:bg-gray-600"
           onClick={() => setOpen(true)}
         >
           {label}
@@ -57,5 +57,5 @@ export default function PostButton({
         />
       )}
     </>
-  );
+  );  
 }

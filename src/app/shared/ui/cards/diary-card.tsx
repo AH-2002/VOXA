@@ -15,11 +15,11 @@ export default function DiaryCard({
   return (
     <div
       key={diary._id}
-      className="border p-5 rounded-xl shadow-sm hover:shadow-md transition-all bg-white"
+      className="border p-5 rounded-xl shadow-sm hover:shadow-md transition-all"
     >
       <div className="flex justify-between items-center">
         <div>
-          <h2 className="text-xl font-semibold text-gray-900">
+          <h2 className="text-xl font-semibold text-gray-900 dark:text-gray-200">
             {diary.title ? diary.title : <LineSkeleton />}
           </h2>
         </div>
@@ -30,11 +30,11 @@ export default function DiaryCard({
         </div>
       </div>
 
-      <p className="text-gray-700 mt-3 line-clamp-2">
+      <p className="text-gray-700 mt-3 line-clamp-2 dark:text-gray-300">
         {diary.content ? diary.content : <LineSkeleton />}
       </p>
 
-      <div className="flex mt-4 justify-between w-full">
+      <div className="flex mt-4 justify-between w-full dark:text-gray-200">
         {!detailsPage && (
           <Link href={`/diaries/${diary._id}`}>
             <Button variant="outline">Read More</Button>

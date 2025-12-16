@@ -15,11 +15,11 @@ export default function ProfileInfoCard({
         w-[75%] mx-auto
         bg-white rounded-xl shadow-md p-6 mb-8 border border-gray-100
         flex flex-col sm:flex-row items-center justify-between
-        gap-4 sm:gap-0 text-center sm:text-left
+        gap-4 sm:gap-0 text-center sm:text-left dark:bg-gray-800 dark:border-gray-700 dark:text-gray-200
       "
     >
       <div>
-        <h2 className="text-2xl font-bold text-gray-800">
+        <h2 className="text-2xl font-bold text-gray-800 dark:text-gray-200">
           {user.first_name && user.last_name ? (
             `${user.first_name} ${user.last_name}`
           ) : (
@@ -27,7 +27,7 @@ export default function ProfileInfoCard({
           )}
         </h2>
 
-        <p className="text-gray-600 mt-2">
+        <p className="text-gray-600 mt-2 dark:text-gray-400">
           {user.email ? user.email : <LineSkeleton />}
         </p>
       </div>

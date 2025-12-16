@@ -18,99 +18,99 @@ export default function UpdateProfileForm({
     <div className="fixed inset-0 z-50 flex items-center justify-center">
       <div
         onClick={onClose}
-        className="absolute inset-0 bg-black/40 backdrop-blur-sm"
+        className="absolute inset-0 bg-black/40 backdrop-blur-sm dark:bg-gray-900/70"
       />
 
       <form
         action={action}
-        className="relative z-50 w-[90%] max-w-lg bg-white shadow-2xl rounded-xl p-6 space-y-6"
+        className="relative z-50 w-[90%] max-w-lg bg-white shadow-2xl rounded-xl p-6 space-y-6 dark:bg-gray-800"
       >
-        <h1 className="text-3xl font-bold text-gray-800 mb-4">
+        <h1 className="text-3xl font-bold text-gray-800 mb-4 dark:text-gray-200">
           Update Profile
         </h1>
 
         <div className="flex flex-col">
           <input type="hidden" name="userId" value={user?._id?.toString()} />
-          <label className="mb-2 text-gray-700 font-medium">First Name</label>
+          <label className="mb-2 text-gray-700 font-medium dark:text-gray-300">First Name</label>
           <input
             type="text"
             name="first_name"
             defaultValue={state?.first_name || user?.first_name}
-            className="border border-gray-300 rounded-md px-4 py-2 focus:outline-none focus:ring-2 focus:ring-blue-400"
+            className="border border-gray-300 rounded-md px-4 py-2 focus:outline-none focus:ring-2 focus:ring-blue-400 dark:bg-gray-700 dark:text-gray-200"
           />
           {state?.errors?.first_name?.map((err, idx) => (
-            <p key={idx} className="text-red-500 text-sm mt-1">
+            <p key={idx} className="text-red-500 text-sm mt-1 dark:text-red-400">
               {err}
             </p>
           ))}
         </div>
 
         <div className="flex flex-col">
-          <label className="mb-2 text-gray-700 font-medium">Last Name</label>
+          <label className="mb-2 text-gray-700 font-medium dark:text-gray-300">Last Name</label>
           <input
             type="text"
             name="last_name"
             defaultValue={state?.last_name || user?.last_name}
-            className="border border-gray-300 rounded-md px-4 py-2 focus:outline-none focus:ring-2 focus:ring-blue-400"
+            className="border border-gray-300 rounded-md px-4 py-2 focus:outline-none focus:ring-2 focus:ring-blue-400 dark:bg-gray-700 dark:text-gray-200"
           />
           {state?.errors?.last_name?.map((err, idx) => (
-            <p key={idx} className="text-red-500 text-sm mt-1">
+            <p key={idx} className="text-red-500 text-sm mt-1 dark:text-red-400">
               {err}
             </p>
           ))}
         </div>
         <div className="flex flex-col">
-          <label className="mb-2 text-gray-700 font-medium">Email</label>
+          <label className="mb-2 text-gray-700 font-medium dark:text-gray-300">Email</label>
           <input
             type="email"
             name="Email"
             defaultValue={user?.email}
             disabled
-            className="border border-gray-300 rounded-md px-4 py-2 bg-gray-100 text-gray-500 cursor-not-allowed disabled:opacity-70 disabled:bg-gray-100 disabled:text-gray-500"
+            className="border border-gray-300 rounded-md px-4 py-2 bg-gray-100 text-gray-500 cursor-not-allowed disabled:opacity-70 disabled:bg-gray-100 disabled:text-gray-500 dark:bg-gray-700 dark:text-gray-400 dark:disabled:bg-gray-700 dark:disabled:text-gray-400"
             title="Email can't be updated"
           />
         </div>
 
         <div className="flex flex-col">
-          <label className="mb-2 text-gray-700 font-medium">Password</label>
+          <label className="mb-2 text-gray-700 font-medium dark:text-gray-300">Password</label>
           <input
             type="password"
             name="password"
             placeholder="Enter new password"
-            className="border border-gray-300 rounded-md px-4 py-2 focus:outline-none focus:ring-2 focus:ring-blue-400"
+            className="border border-gray-300 rounded-md px-4 py-2 focus:outline-none focus:ring-2 focus:ring-blue-400 dark:bg-gray-700 dark:text-gray-200"
           />
           {state?.errors?.password?.map((err, idx) => (
-            <p key={idx} className="text-red-500 text-sm mt-1">
+            <p key={idx} className="text-red-500 text-sm mt-1 dark:text-red-400">
               {err}
             </p>
           ))}
         </div>
         <div className="flex flex-col">
-          <label className="mb-2 text-gray-700 font-medium">
+          <label className="mb-2 text-gray-700 font-medium dark:text-gray-300">
             Confirm Password
           </label>
           <input
             type="password"
             name="confirmPassword"
             placeholder="Retype password"
-            className="border border-gray-300 rounded-md px-4 py-2 focus:outline-none focus:ring-2 focus:ring-blue-400"
+            className="border border-gray-300 rounded-md px-4 py-2 focus:outline-none focus:ring-2 focus:ring-blue-400 dark:bg-gray-700 dark:text-gray-200"
           />
           {state?.errors?.confirmPassword?.map((err, idx) => (
-            <p key={idx} className="text-red-500 text-sm mt-1">
+            <p key={idx} className="text-red-500 text-sm mt-1 dark:text-red-400">
               {err}
             </p>
           ))}
         </div>
 
         <div className="flex flex-col">
-          <label className="mb-2 text-gray-700 font-medium">
+          <label className="mb-2 text-gray-700 font-medium dark:text-gray-300">
             Profile Picture
           </label>
           <input
             type="file"
             name="profile_picture"
             accept="image/*"
-            className="border border-gray-300 rounded-md px-4 py-2"
+            className="border border-gray-300 rounded-md px-4 py-2 dark:bg-gray-700 dark:text-gray-200 cursor-pointer"
           />
         </div>
 

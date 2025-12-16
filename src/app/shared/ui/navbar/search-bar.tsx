@@ -99,6 +99,7 @@ export default function SearchBar() {
               setResults([]);
               setActiveIndex(-1);
             }}
+            className="dark:bg-transparent dark:text-gray-200 dark:hover:text-gray-200 dark:hover:bg-blue-600 dark:transition"
           >
             <Search className="w-full h-5" />
           </Button>
@@ -106,7 +107,7 @@ export default function SearchBar() {
       </div>
 
       {(results.length > 0 || loading) && (
-        <div className="absolute top-full mt-2 w-full bg-white border border-gray-200 rounded-xl shadow-lg z-50 max-h-80 overflow-y-auto">
+        <div className="absolute top-full mt-2 w-full bg-white border border-gray-200 rounded-xl shadow-lg z-50 max-h-80 overflow-y-auto dark:text-gray-200 dark:bg-zinc-900 dark:border-zinc-700">
           {loading ? (
             <SearchSkeleton />
           ) : (
@@ -115,7 +116,7 @@ export default function SearchBar() {
                 key={user._id}
                 href={`/profile/${user._id}`}
                 className={`flex items-center gap-3 px-4 py-2 transition ${
-                  activeIndex === idx ? "bg-gray-200" : "hover:bg-gray-100"
+                  activeIndex === idx ? "bg-gray-200" : "hover:bg-gray-800"
                 }`}
               >
                 <img
