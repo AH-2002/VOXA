@@ -45,7 +45,6 @@ export default function Navbar({ userId }: { userId: string | undefined }) {
     return () => document.removeEventListener("mousedown", handleClickOutside);
   }, []);
 
-  // Close menus on login/logout
   useEffect(() => {
     setMenuOpen(false);
     setMobileMenuOpen(false);
@@ -55,7 +54,6 @@ export default function Navbar({ userId }: { userId: string | undefined }) {
     <nav className="w-full backdrop-blur-sm bg-white shadow-md fixed top-0 z-50 transition-all duration-300 dark:bg-zinc-900 dark:text-gray-200 dark:backdrop-blur-sm dark:shadow-md">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex items-center justify-between h-16 gap-x-5">
-          {/* LEFT — Logo */}
           <Link
             href="/"
             className="flex items-center gap-2 text-2xl font-bold text-gray-900 hover:text-blue-600 transition dark:text-gray-200 dark:hover:text-blue-600 dark:transition"
@@ -64,7 +62,6 @@ export default function Navbar({ userId }: { userId: string | undefined }) {
             VOXA
           </Link>
 
-          {/* CENTER — Main nav links (desktop only) */}
           <div className="hidden md:flex flex-1 justify-center items-center gap-6">
             {userId
               ? navLinks.map((link: navLinkType) => (
@@ -108,9 +105,7 @@ export default function Navbar({ userId }: { userId: string | undefined }) {
             )}
           </div>
 
-          {/* RIGHT — Auth buttons / user menu */}
           <div className="flex items-center gap-3">
-            {/* Mobile menu button */}
             {userId && (
               <div className="md:hidden">
                 <button
@@ -126,7 +121,6 @@ export default function Navbar({ userId }: { userId: string | undefined }) {
               </div>
             )}
 
-            {/* User dropdown menu (desktop only) */}
             <div className="hidden md:block relative">
               {userId && (
                 <>
@@ -172,7 +166,6 @@ export default function Navbar({ userId }: { userId: string | undefined }) {
         </div>
       </div>
 
-      {/* MOBILE MENU */}
       {mobileMenuOpen && userId && (
         <div
           ref={mobileRef}
@@ -225,14 +218,13 @@ export default function Navbar({ userId }: { userId: string | undefined }) {
         </div>
       )}
 
-      {/* MOBILE AUTH BUTTONS */}
       {!userId && (
-        <div className="md:hidden bg-white border-t shadow-md w-full absolute top-16 left-0 z-50 flex justify-center gap-4 px-4 py-3">
+        <div className="md:hidden bg-white border-t shadow-md w-full absolute top-16 left-0 z-50 flex justify-center gap-4 px-4 py-3 dark:bg-zinc-900 dark:text-gray-200">
           {authLinks.map((link: navLinkType) => (
             <Link
               key={link.href}
               href={link.href}
-              className={`text-gray-700 hover:text-blue-500 transition ${isActive(
+              className={`text-gray-700 hover:text-blue-500 transition dark:text-gray-200 dark:hover:text-blue-400 ${isActive(
                 link.href
               )}`}
             >
