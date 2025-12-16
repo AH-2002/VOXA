@@ -116,7 +116,9 @@ export default function SearchBar() {
                 key={user._id}
                 href={`/profile/${user._id}`}
                 className={`flex items-center gap-3 px-4 py-2 transition ${
-                  activeIndex === idx ? "bg-gray-200" : "hover:bg-gray-800"
+                  activeIndex === idx
+                    ? "bg-gray-200 dark:bg-gray-700"
+                    : "hover:bg-gray-800 dark:hover:bg-gray-700"
                 }`}
               >
                 <img
