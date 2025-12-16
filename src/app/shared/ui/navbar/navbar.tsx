@@ -153,7 +153,7 @@ export default function Navbar({ userId }: { userId: string | undefined }) {
                         <NotebookPen className="w-5 h-5" /> Diaries
                       </Link>
                       <form action={logout}>
-                        <button className="w-full flex gap-3 px-5 py-2 text-left text-red-500 hover:bg-gray-100 transition">
+                        <button className="w-full flex gap-3 px-5 py-2 text-left text-red-500 hover:bg-gray-100 transition dark:hover:bg-gray-800 dark:text-red-400 dark:hover:text-red-600">
                           <LogOut className="w-5 h-5" /> Log out
                         </button>
                       </form>
@@ -211,7 +211,7 @@ export default function Navbar({ userId }: { userId: string | undefined }) {
             <ThemeToggle /> Theme Mode
           </div>
           <form action={logout}>
-            <button className="w-full px-4 py-3 text-left text-red-500 hover:bg-gray-100 hover:text-red-600 flex items-center gap-2 transition">
+            <button className="w-full px-4 py-3 text-left text-red-500 hover:bg-gray-100 hover:text-red-600 flex items-center gap-2 transition dark:hover:bg-gray-800 dark:text-red-400 dark:hover:text-red-600">
               <LogOut className="w-5 h-5" /> Log out
             </button>
           </form>
