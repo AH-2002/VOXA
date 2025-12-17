@@ -1,14 +1,14 @@
 "use client";
 
 import { logout } from "@/actions/auth";
-import { authLinks, navLinks } from "@/app/shared/ui/navbar/data";
-import { navLinkType } from "@/app/shared/ui/navbar/types";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useEffect, useRef, useState } from "react";
 import SearchBar from "./search-bar";
 import { LogOut, User, NotebookPen, Sparkles, Menu, X } from "lucide-react";
-import ThemeToggle from "@/components/theme-toggle";
+import { authLinks, navLinks } from "./data";
+import { navLinkType } from "./types";
+import ThemeToggle from "@/app/[locale]/components/theme-toggle";
 
 export default function Navbar({ userId }: { userId: string | undefined }) {
   const [menuOpen, setMenuOpen] = useState(false);

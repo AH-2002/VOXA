@@ -1,12 +1,13 @@
 "use client";
 
 import { deletePost } from "@/actions/posts";
-import { UserType } from "@/app/users/types";
-import PostButton from "@/components/post-buttons";
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useRef, useState, useTransition } from "react";
 import { PostType } from "../../types/posts";
 import { LineSkeleton, PictureSkeleton } from "../skeletons/skeleton";
 import { formatDate } from "@/lib/serialize";
+import { UserType } from "@/app/[locale]/users/types";
+import PostButton from "@/app/[locale]/components/post-buttons";
+import { useTranslations } from "next-intl";
 
 export default function PostCard({
   post,
@@ -26,7 +27,7 @@ export default function PostCard({
   const [newComment, setNewComment] = useState("");
   const [commentLoading, setCommentLoading] = useState(false);
   const [authors, setAuthors] = useState<{ [key: string]: UserType }>({});
-
+  const t = useTranslations("post");
   useEffect(() => {
     const handleClickOutside = (event: MouseEvent) => {
       if (
@@ -43,7 +44,9 @@ export default function PostCard({
   useEffect(() => {
     const fetchUser = async () => {
       try {
-        const res = await fetch(`/api/users/${post.userId}`);
+        const res = await fetch(`/api/users/${post.userId}`, {
+          cache: "no-store",
+        });
         if (res.ok) {
           const data = await res.json();
           setPostUser(data);
@@ -176,7 +179,7 @@ export default function PostCard({
                     value={post._id.toString()}
                   />
                   <button className="w-full flex gap-x-5 text-left px-5 py-2 hover:bg-gray-100 text-red-500 dark:hover:bg-gray-600 dark:text-red-400">
-                    Delete
+                    {t("delete")}
                   </button>
                 </form>
               </div>
@@ -195,7 +198,9 @@ export default function PostCard({
               : "bg-gray-200 text-gray-800 hover:bg-gray-300 dark:bg-gray-600 dark:text-gray-200 dark:hover:bg-gray-500"
           }`}
         >
-          {likes.includes(userId ?? "") ? "❤️ Unlike" : "🤍 Like"}
+          {likes.includes(userId ?? "")
+            ? `❤️ ${t("unlike")}`
+            : `🤍 ${t("like")}`}
         </button>
         <span className="text-gray-600 font-medium dark:text-gray-400">
           {likes.length} {likes.length === 1 ? "like" : "likes"}
@@ -224,7 +229,9 @@ export default function PostCard({
 
       <div className="mt-4 space-y-3">
         {comments.length === 0 && (
-          <p className="text-gray-500 text-sm dark:text-gray-400">No comments yet.</p>
+          <p className="text-gray-500 text-sm dark:text-gray-400">
+            No comments yet.
+          </p>
         )}
 
         {comments.map((c) => {
@@ -253,7 +260,9 @@ export default function PostCard({
                     <LineSkeleton />
                   )}
                 </div>
-                <p className="text-sm text-gray-800 dark:text-gray-200">{c.content}</p>
+                <p className="text-sm text-gray-800 dark:text-gray-200">
+                  {c.content}
+                </p>
                 <p className="text-xs text-gray-400 mt-1 dark:text-gray-400">
                   {formatDate(c.createdAt)}
                 </p>

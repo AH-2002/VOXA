@@ -1,12 +1,12 @@
 "use client";
-import { Input } from "@/components/ui/input";
 import { Search } from "lucide-react";
 import { useEffect, useRef, useState } from "react";
-import { UserType } from "@/app/users/types";
 import { SearchSkeleton } from "../skeletons/skeleton";
-import { Button } from "@/components/ui/button";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
+import { UserType } from "@/app/[locale]/users/types";
+import { Input } from "@/app/[locale]/components/ui/input";
+import { Button } from "@/app/[locale]/components/ui/button";
 
 export default function SearchBar() {
   const [query, setQuery] = useState("");

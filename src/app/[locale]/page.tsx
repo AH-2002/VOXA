@@ -1,9 +1,9 @@
-import PostCard from "@/app/shared/ui/cards/post-card";
 import { getCollection } from "@/lib/db";
 import getAuthUser from "@/lib/getAuthUser";
 import { serializePost } from "@/lib/serialize";
-import PostButton from "@/components/post-buttons";
 import { dbPostType, PostType } from "./shared/types/posts";
+import PostButton from "./components/post-buttons";
+import PostCard from "./shared/ui/cards/post-card";
 
 export default async function Home() {
   const postsCollection = await getCollection("posts");

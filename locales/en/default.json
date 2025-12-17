@@ -1,0 +1,7 @@
+{
+  "post": {
+    "delete": "Delete",
+    "like": "Like",
+    "unlike": "Unlike"
+  }
+}
