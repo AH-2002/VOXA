@@ -267,11 +267,13 @@ export default function PostCard({
             >
               <div className="flex-shrink-0 w-8 h-8 rounded-full overflow-hidden bg-blue-100 dark:bg-gray-600">
                 {author ? (
-                  <img
-                    src={author.profile_picture || "/user-picture.webp"}
-                    alt={`${author.first_name} ${author.last_name}`}
-                    className="w-full h-full object-cover"
-                  />
+                  <Link href={`/profile/${author._id}`}>
+                    <img
+                      src={author.profile_picture || "/user-picture.webp"}
+                      alt={`${author.first_name} ${author.last_name}`}
+                      className="w-full h-full object-cover"
+                    />
+                  </Link>
                 ) : (
                   <PictureSkeleton />
                 )}
@@ -279,7 +281,9 @@ export default function PostCard({
               <div className="flex-1">
                 <div className="text-sm font-semibold text-gray-700 dark:text-gray-200">
                   {author ? (
-                    `${author.first_name} ${author.last_name}`
+                    <Link href={`/profile/${author._id}`}>
+                      {`${author.first_name} ${author.last_name}`}
+                    </Link>
                   ) : (
                     <LineSkeleton />
                   )}
