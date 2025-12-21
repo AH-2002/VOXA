@@ -1,7 +1,6 @@
 import { getCollection } from "@/lib/db";
 import { NextResponse } from "next/server";
 import { ObjectId } from "mongodb";
-export const dynamic = "force-dynamic";
 export async function GET(
   req: Request,
   { params }: { params: Promise<{ id: string }> }

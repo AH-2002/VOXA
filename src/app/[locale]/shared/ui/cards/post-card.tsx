@@ -158,6 +158,22 @@ export default function PostCard({
           )}
           <div className="text-gray-700 text-base mb-4 dark:text-gray-300">
             {post.content ? post.content : <LineSkeleton />}
+            {post?.mediaUrl &&
+              (post.mediaType === "video" ? (
+                <video
+                  controls
+                  className="mt-8 rounded-lg w-full h-auto object-cover"
+                >
+                  <source src={post.mediaUrl} type="video/mp4" />
+                  Your browser does not support the video tag.
+                </video>
+              ) : (
+                <img
+                  src={post.mediaUrl}
+                  alt="Post Image"
+                  className="mt-8 rounded-lg w-full h-auto object-cover"
+                />
+              ))}
           </div>
         </div>
 

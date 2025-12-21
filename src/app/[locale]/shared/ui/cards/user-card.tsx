@@ -1,4 +1,4 @@
-import { UserType } from "@/app/users/types";
+import { UserType } from "@/app/[locale]/users/types";
 import { User } from "lucide-react";
 import Link from "next/link";
 

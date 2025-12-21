@@ -4,7 +4,7 @@ import { useState } from "react";
 import { Pencil } from "lucide-react";
 import UpdateProfileForm from "./update-profile-form";
 import { Button } from "./ui/button";
-import { UserType } from "@/app/users/types";
+import { UserType } from "../users/types";
 
 export default function UpdateProfileButton({ user }: { user: UserType }) {
   const [open, setOpen] = useState(false);

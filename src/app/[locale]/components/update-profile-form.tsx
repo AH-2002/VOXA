@@ -3,7 +3,7 @@
 import { useActionState } from "react";
 import { Button } from "./ui/button";
 import { updateProfile } from "@/actions/profile";
-import { UserType } from "@/app/users/types";
+import { UserType } from "../users/types";
 
 export default function UpdateProfileForm({
   user,

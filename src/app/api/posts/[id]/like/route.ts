@@ -3,7 +3,6 @@ import getAuthUser from "@/lib/getAuthUser";
 import { ObjectId } from "mongodb";
 import { NextRequest, NextResponse } from "next/server";
 
-export const dynamic = "force-dynamic";
 export async function POST(
   req: NextRequest,
   { params }: { params: Promise<{ id: string }> }

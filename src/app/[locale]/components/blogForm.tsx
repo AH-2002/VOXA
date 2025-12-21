@@ -2,8 +2,8 @@
 
 import { useActionState } from "react";
 import { Button } from "./ui/button";
-import { PostType } from "@/app/shared/types/posts";
-import { FormState } from "@/app/shared/types/forms";
+import { PostType } from "../shared/types/posts";
+import { FormState } from "../shared/types/forms";
 
 export default function BlogForm({
   handler,
