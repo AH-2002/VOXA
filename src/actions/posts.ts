@@ -66,12 +66,21 @@ export async function updatePost(prevState: any, formData: FormData) {
     _id: postId,
   });
   if (user?.userId !== post?.userId.toString()) redirect("/");
-
+  const file = formData.get("media") as File;
+  let mediaUrl = post?.mediaUrl;
+  let mediaType = post?.mediaType;
+  if (file && file.size > 0) {
+    const uploaded = (await uploadMedia(file)) as any;
+    mediaUrl = uploaded.secure_url;
+    mediaType = uploaded.resource_type;
+  }
   await postsCollection?.findOneAndUpdate(
     { _id: post?._id },
     {
       $set: {
         content: validateFields.data.content,
+        mediaUrl,
+        mediaType,
       },
     }
   );

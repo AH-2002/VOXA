@@ -162,7 +162,7 @@ export default function PostCard({
               (post.mediaType === "video" ? (
                 <video
                   controls
-                  className="mt-8 rounded-lg w-full h-auto object-cover"
+                  className="mt-8 rounded-lg w-100 h-100 object-cover"
                 >
                   <source src={post.mediaUrl} type="video/mp4" />
                   Your browser does not support the video tag.
@@ -171,7 +171,7 @@ export default function PostCard({
                 <img
                   src={post.mediaUrl}
                   alt="Post Image"
-                  className="mt-8 rounded-lg w-full h-auto object-cover"
+                  className="mt-8 rounded-lg w-100 h-100 object-cover"
                 />
               ))}
           </div>
