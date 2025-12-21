@@ -8,39 +8,39 @@ const intlMiddleware = createIntlMiddleware(routing);
 const PUBLIC_ROUTES = ["/login", "/register"];
 
 export async function proxy(req: NextRequest) {
-  // 1️⃣ next-intl (middleware API)
-  const intlResponse = intlMiddleware(req);
-  if (intlResponse) return intlResponse;
-
   const { pathname } = req.nextUrl;
   const token = req.cookies.get("session")?.value;
 
-  // 2️⃣ Remove locale prefix
   const pathnameWithoutLocale = pathname.replace(/^\/(en|ar)/, "");
 
-  if (!token) {
-    if (!PUBLIC_ROUTES.includes(pathnameWithoutLocale)) {
-      return NextResponse.redirect(new URL("/login", req.url));
-    }
-    return NextResponse.next();
+  // 🔐 AUTH FIRST
+  if (!token && !PUBLIC_ROUTES.includes(pathnameWithoutLocale)) {
+    return NextResponse.redirect(new URL("/login", req.url));
   }
 
-  try {
-    await jwtVerify(
-      token,
-      new TextEncoder().encode(process.env.SESSION_SECRET)
-    );
-
-    if (PUBLIC_ROUTES.includes(pathnameWithoutLocale)) {
-      return NextResponse.redirect(new URL("/", req.url));
-    }
-
-    return NextResponse.next();
-  } catch {
-    const res = NextResponse.redirect(new URL("/login", req.url));
-    res.cookies.delete("session");
-    return res;
+  if (token && PUBLIC_ROUTES.includes(pathnameWithoutLocale)) {
+    return NextResponse.redirect(new URL("/", req.url));
   }
+
+  // 🌍 THEN intl
+  const intlResponse = intlMiddleware(req);
+  if (intlResponse) return intlResponse;
+
+  // 🔑 VERIFY TOKEN
+  if (token) {
+    try {
+      await jwtVerify(
+        token,
+        new TextEncoder().encode(process.env.SESSION_SECRET)
+      );
+    } catch {
+      const res = NextResponse.redirect(new URL("/login", req.url));
+      res.cookies.delete("session");
+      return res;
+    }
+  }
+
+  return NextResponse.next();
 }
 
 export const config = {

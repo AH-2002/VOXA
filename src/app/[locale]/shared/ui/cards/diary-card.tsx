@@ -1,10 +1,10 @@
-import DiariesButton from "@/components/diaries-button";
-import { Button } from "@/components/ui/button";
 import { diariesType } from "../../../diaries/types";
 import { deleteDiary } from "@/actions/diaries";
 import Link from "next/link";
 import { LineSkeleton } from "../skeletons/skeleton";
 import { formatDate } from "@/lib/serialize";
+import { Button } from "@/app/[locale]/components/ui/button";
+import DiariesButton from "@/app/[locale]/components/diaries-button";
 export default function DiaryCard({
   diary,
   detailsPage,
@@ -17,7 +17,7 @@ export default function DiaryCard({
       key={diary._id}
       className="border p-5 rounded-xl shadow-sm hover:shadow-md transition-all"
     >
-      <div className="flex justify-between items-center">
+      <div className="flex justify-between items-center flex-wrap gap-4">
         <div>
           <h2 className="text-xl font-semibold text-gray-900 dark:text-gray-200">
             {diary.title ? diary.title : <LineSkeleton />}
@@ -34,7 +34,7 @@ export default function DiaryCard({
         {diary.content ? diary.content : <LineSkeleton />}
       </p>
 
-      <div className="flex mt-4 justify-between w-full dark:text-gray-200">
+      <div className="flex mt-4 justify-between w-full dark:text-gray-200 flex-wrap gap-4">
         {!detailsPage && (
           <Link href={`/diaries/${diary._id}`}>
             <Button variant="outline">Read More</Button>

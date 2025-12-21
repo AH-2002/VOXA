@@ -1,12 +1,13 @@
-import { dbPostType } from "@/app/shared/types/posts";
-import PostCard from "@/app/shared/ui/cards/post-card";
-import ProfileInfoCard from "@/app/shared/ui/cards/profile-info";
-import { dbUserType } from "@/app/users/types";
-import PostButton from "@/components/post-buttons";
+
 import { getCollection } from "@/lib/db";
 import getAuthUser from "@/lib/getAuthUser";
 import { serializePost, serializeUser } from "@/lib/serialize";
 import { ObjectId } from "mongodb";
+import { dbUserType } from "../../users/types";
+import { dbPostType } from "../../shared/types/posts";
+import ProfileInfoCard from "../../shared/ui/cards/profile-info";
+import PostButton from "../../components/post-buttons";
+import PostCard from "../../shared/ui/cards/post-card";
 
 export default async function ProfilePage({
   params,

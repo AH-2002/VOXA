@@ -8,6 +8,7 @@ import { formatDate } from "@/lib/serialize";
 import { UserType } from "@/app/[locale]/users/types";
 import PostButton from "@/app/[locale]/components/post-buttons";
 import { useTranslations } from "next-intl";
+import Link from "next/link";
 
 export default function PostCard({
   post,
@@ -27,7 +28,7 @@ export default function PostCard({
   const [newComment, setNewComment] = useState("");
   const [commentLoading, setCommentLoading] = useState(false);
   const [authors, setAuthors] = useState<{ [key: string]: UserType }>({});
-  const t = useTranslations("post");
+  const postTranslation = useTranslations("post");
   useEffect(() => {
     const handleClickOutside = (event: MouseEvent) => {
       if (
@@ -44,9 +45,7 @@ export default function PostCard({
   useEffect(() => {
     const fetchUser = async () => {
       try {
-        const res = await fetch(`/api/users/${post.userId}`, {
-          cache: "no-store",
-        });
+        const res = await fetch(`/api/users/${post.userId}`);
         if (res.ok) {
           const data = await res.json();
           setPostUser(data);
@@ -135,11 +134,13 @@ export default function PostCard({
           {userLoading ? (
             <PictureSkeleton />
           ) : (
-            <img
-              src={postUser?.profile_picture || "/user-picture.webp"}
-              alt="Profile Picture"
-              className="object-cover w-full h-full"
-            />
+            <Link href={`/profile/${postUser?._id}`}>
+              <img
+                src={postUser?.profile_picture || "/user-picture.webp"}
+                alt="Profile Picture"
+                className="object-cover w-full h-full"
+              />
+            </Link>
           )}
         </div>
         <div>
@@ -147,9 +148,11 @@ export default function PostCard({
             {post.createdAt ? formatDate(post.createdAt) : <LineSkeleton />}
           </p>
           {postUser ? (
-            <h2 className="text-lg font-semibold text-gray-700 leading-tight dark:text-gray-200">
-              {`${postUser.first_name} ${postUser.last_name}`}
-            </h2>
+            <Link href={`/profile/${postUser._id}`}>
+              <h2 className="text-lg font-semibold text-gray-700 leading-tight dark:text-gray-200">
+                {`${postUser.first_name} ${postUser.last_name}`}
+              </h2>
+            </Link>
           ) : (
             <LineSkeleton />
           )}
@@ -171,7 +174,7 @@ export default function PostCard({
                 ref={dropdownRef}
                 className="cursor-pointer absolute right-0 mt-2 w-36 bg-white border shadow-md rounded-md overflow-hidden z-50 dark:bg-gray-700"
               >
-                <PostButton label="Update Post" post={post} />
+                <PostButton label={postTranslation("updatePost")} post={post} />
                 <form action={deletePost}>
                   <input
                     type="hidden"
@@ -179,7 +182,7 @@ export default function PostCard({
                     value={post._id.toString()}
                   />
                   <button className="w-full flex gap-x-5 text-left px-5 py-2 hover:bg-gray-100 text-red-500 dark:hover:bg-gray-600 dark:text-red-400">
-                    {t("delete")}
+                    {postTranslation("delete")}
                   </button>
                 </form>
               </div>
@@ -199,38 +202,43 @@ export default function PostCard({
           }`}
         >
           {likes.includes(userId ?? "")
-            ? `❤️ ${t("unlike")}`
-            : `🤍 ${t("like")}`}
+            ? `❤️ ${postTranslation("unlike")}`
+            : `🤍 ${postTranslation("like")}`}
         </button>
         <span className="text-gray-600 font-medium dark:text-gray-400">
-          {likes.length} {likes.length === 1 ? "like" : "likes"}
+          {likes.length}{" "}
+          {likes.length === 1
+            ? `${postTranslation("Like")}`
+            : `${postTranslation("likes")}`}
         </span>
       </div>
 
       <form
         onSubmit={handleAddComment}
-        className="mt-4 flex items-center gap-3"
+        className="mt-4 flex flex-col sm:flex-row sm:items-center gap-3 flex-wrap"
       >
         <input
           type="text"
           value={newComment}
           onChange={(e) => setNewComment(e.target.value)}
-          placeholder="Write a comment..."
+          placeholder={`${postTranslation("writeComment")}`}
           className="flex-1 border rounded-full px-4 py-2 text-sm focus:outline-none focus:ring focus:ring-blue-300 dark:bg-gray-700 dark:text-gray-200"
         />
-        <button
-          type="submit"
-          disabled={commentLoading}
-          className="px-4 py-2 bg-blue-500 text-white rounded-full hover:bg-blue-600 disabled:bg-gray-300 dark:disabled:bg-gray-600"
-        >
-          Comment
-        </button>
+        <div className="flex justify-end w-full sm:w-auto">
+          <button
+            type="submit"
+            disabled={commentLoading}
+            className="px-4 py-2 bg-blue-500 text-white rounded-full hover:bg-blue-600 disabled:bg-gray-300 dark:disabled:bg-gray-600"
+          >
+            {postTranslation("comment")}
+          </button>
+        </div>
       </form>
 
       <div className="mt-4 space-y-3">
         {comments.length === 0 && (
           <p className="text-gray-500 text-sm dark:text-gray-400">
-            No comments yet.
+            {postTranslation("noComment")}
           </p>
         )}
 

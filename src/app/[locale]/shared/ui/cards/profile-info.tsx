@@ -1,6 +1,6 @@
-import { UserType } from "@/app/users/types";
-import UpdateProfileButton from "@/components/update-profile-button";
+import { UserType } from "@/app/[locale]/users/types";
 import { LineSkeleton } from "../skeletons/skeleton";
+import UpdateProfileButton from "@/app/[locale]/components/update-profile-button";
 
 export default function ProfileInfoCard({
   user,

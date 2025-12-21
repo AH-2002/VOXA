@@ -1,7 +1,17 @@
 {
   "post": {
+    "Add": "Add",
+    "addPost": "Add post",
+    "comment": "Comment",
     "delete": "Delete",
     "like": "Like",
-    "unlike": "Unlike"
+    "Like": "like",
+    "likes": "likes",
+    "noComment": "No comments yet",
+    "noPosts": "No posts found",
+    "unlike": "Unlike",
+    "Update": "Update",
+    "updatePost": "Update post",
+    "writeComment": "Write a comment"
   }
 }

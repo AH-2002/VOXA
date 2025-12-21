@@ -1,9 +1,9 @@
 "use client";
 import { register } from "@/actions/auth";
-import { Button } from "@/components/ui/button";
 import Link from "next/link";
 import { useActionState, useState } from "react";
 import { Eye, EyeOff } from "lucide-react";
+import { Button } from "../../components/ui/button";
 export default function RegisterPage() {
   const [state, action, isPending] = useActionState(register, undefined);
   const [showPassword, setShowPassword] = useState(false);

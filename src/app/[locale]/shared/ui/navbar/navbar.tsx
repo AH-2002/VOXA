@@ -143,12 +143,14 @@ export default function Navbar({ userId }: { userId: string | undefined }) {
                       <Link
                         href={`/profile/${userId}`}
                         className="flex gap-3 px-5 py-2 hover:bg-gray-100 text-gray-700 transition dark:text-gray-200 dark:hover:bg-gray-800"
+                        onClick={() => setMenuOpen(false)}
                       >
                         <User className="w-5 h-5" /> Profile
                       </Link>
                       <Link
                         href="/diaries"
                         className="flex gap-3 px-5 py-2 hover:bg-gray-100 text-gray-700 transition dark:text-gray-200 dark:hover:bg-gray-800"
+                        onClick={() => setMenuOpen(false)}
                       >
                         <NotebookPen className="w-5 h-5" /> Diaries
                       </Link>
@@ -179,6 +181,7 @@ export default function Navbar({ userId }: { userId: string | undefined }) {
             <Link
               key={link.href}
               href={link.href}
+              onClick={() => setMobileMenuOpen(false)}
               className={`px-4 py-3 border-b flex items-center gap-2 transition ${isActive(
                 link.href
               )} hover:bg-gray-100 dark:hover:bg-gray-800 dark:text-gray-200`}
@@ -189,6 +192,7 @@ export default function Navbar({ userId }: { userId: string | undefined }) {
 
           <Link
             href={`/profile/${userId}`}
+            onClick={() => setMobileMenuOpen(false)}
             className={`px-4 py-3 border-b flex items-center gap-2 transition ${isActive(
               `/profile/${userId}`
             )} hover:bg-gray-100 dark:hover:bg-gray-800 dark:text-gray-200`}
@@ -198,6 +202,7 @@ export default function Navbar({ userId }: { userId: string | undefined }) {
 
           <Link
             href="/diaries"
+            onClick={() => setMobileMenuOpen(false)}
             className={`px-4 py-3 border-b flex items-center gap-2 transition ${isActive(
               "/diaries"
             )} hover:bg-gray-100 dark:hover:bg-gray-800 dark:text-gray-200`}
@@ -207,11 +212,15 @@ export default function Navbar({ userId }: { userId: string | undefined }) {
           <div
             className={`mx-2 py-2 border-b flex items-center transition
              hover:bg-gray-100 cursor-pointer dark:hover:bg-gray-800 dark:text-gray-200`}
+            onClick={() => setMobileMenuOpen(false)}
           >
             <ThemeToggle /> Theme Mode
           </div>
           <form action={logout}>
-            <button className="w-full px-4 py-3 text-left text-red-500 hover:bg-gray-100 hover:text-red-600 flex items-center gap-2 transition dark:hover:bg-gray-800 dark:text-red-400 dark:hover:text-red-600">
+            <button
+              onClick={() => setMobileMenuOpen(false)}
+              className="w-full px-4 py-3 text-left text-red-500 hover:bg-gray-100 hover:text-red-600 flex items-center gap-2 transition dark:hover:bg-gray-800 dark:text-red-400 dark:hover:text-red-600"
+            >
               <LogOut className="w-5 h-5" /> Log out
             </button>
           </form>

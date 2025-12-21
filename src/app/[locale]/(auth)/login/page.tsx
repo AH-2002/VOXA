@@ -1,10 +1,10 @@
 "use client";
 import { login } from "@/actions/auth";
-import { Button } from "@/components/ui/button";
 import Link from "next/link";
 import { useActionState } from "react";
 import { useState } from "react";
 import { Eye, EyeOff } from "lucide-react";
+import { Button } from "../../components/ui/button";
 export default function LoginPage() {
   const [state, action, isPending] = useActionState(login, undefined);
   const [showPassword, setShowPassword] = useState(false);

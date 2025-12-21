@@ -5,7 +5,14 @@ import { dbPostType, PostType } from "./shared/types/posts";
 import PostButton from "./components/post-buttons";
 import PostCard from "./shared/ui/cards/post-card";
 
-export default async function Home() {
+export default async function Home({
+  params,
+}: {
+  params: Promise<{ locale: string }>;
+}) {
+  const locale = (await params).locale;
+  const messages = (await import(`../../../locales/${locale}/default.json`)).default;
+
   const postsCollection = await getCollection("posts");
   const rawPosts = (await postsCollection
     ?.find()
@@ -17,11 +24,11 @@ export default async function Home() {
   return (
     <section className="flex flex-col gap-y-5 max-w-7xl mx-auto">
       <div className="flex justify-end w-[75%] mx-auto">
-        <PostButton label="Add Post" variant="submit" />
+        <PostButton label={messages.post.addPost} variant="submit" />
       </div>
       {!posts || posts.length == 0 ? (
         <div className="flex justify-center items-center mt-5">
-          <p>No posts Found</p>
+          <p>{messages.post.noPosts}</p>
         </div>
       ) : (
         posts
