@@ -9,8 +9,12 @@ import { LogOut, User, NotebookPen, Sparkles, Menu, X } from "lucide-react";
 import { authLinks, navLinks } from "./data";
 import { navLinkType } from "./types";
 import ThemeToggle from "@/app/[locale]/components/theme-toggle";
+import { useTranslations } from "next-intl";
+import LanguageSwitcher from "@/app/[locale]/components/language-switcher";
 
 export default function Navbar({ userId }: { userId: string | undefined }) {
+  const navbarTranslation = useTranslations("navbar");
+  const mobileNavbarTranslation = useTranslations("mobileNavbar");
   const [menuOpen, setMenuOpen] = useState(false);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const dropdownRef = useRef<HTMLDivElement>(null);
@@ -85,6 +89,7 @@ export default function Navbar({ userId }: { userId: string | undefined }) {
               <div className="w-[90%] mx-auto flex gap-5">
                 <SearchBar />
                 <ThemeToggle />
+                <LanguageSwitcher />
               </div>
             )}
 
@@ -98,7 +103,7 @@ export default function Navbar({ userId }: { userId: string | undefined }) {
                       link.href
                     )}`}
                   >
-                    {link.label}
+                    {navbarTranslation(link.label)}
                   </Link>
                 ))}
               </div>
@@ -145,18 +150,21 @@ export default function Navbar({ userId }: { userId: string | undefined }) {
                         className="flex gap-3 px-5 py-2 hover:bg-gray-100 text-gray-700 transition dark:text-gray-200 dark:hover:bg-gray-800"
                         onClick={() => setMenuOpen(false)}
                       >
-                        <User className="w-5 h-5" /> Profile
+                        <User className="w-5 h-5" />
+                        {navbarTranslation("profile")}
                       </Link>
                       <Link
                         href="/diaries"
                         className="flex gap-3 px-5 py-2 hover:bg-gray-100 text-gray-700 transition dark:text-gray-200 dark:hover:bg-gray-800"
                         onClick={() => setMenuOpen(false)}
                       >
-                        <NotebookPen className="w-5 h-5" /> Diaries
+                        <NotebookPen className="w-5 h-5" />
+                        {navbarTranslation("diaries")}
                       </Link>
                       <form action={logout}>
                         <button className="w-full flex gap-3 px-5 py-2 text-left text-red-500 hover:bg-gray-100 transition dark:hover:bg-gray-800 dark:text-red-400 dark:hover:text-red-600">
-                          <LogOut className="w-5 h-5" /> Log out
+                          <LogOut className="w-5 h-5" />
+                          {navbarTranslation("logout")}
                         </button>
                       </form>
                     </div>
@@ -186,7 +194,8 @@ export default function Navbar({ userId }: { userId: string | undefined }) {
                 link.href
               )} hover:bg-gray-100 dark:hover:bg-gray-800 dark:text-gray-200`}
             >
-              {link.icon && <link.icon className="w-5 h-5" />} {link.label}
+              {link.icon && <link.icon className="w-5 h-5" />}
+              {mobileNavbarTranslation(link.label)}
             </Link>
           ))}
 
@@ -197,7 +206,7 @@ export default function Navbar({ userId }: { userId: string | undefined }) {
               `/profile/${userId}`
             )} hover:bg-gray-100 dark:hover:bg-gray-800 dark:text-gray-200`}
           >
-            <User className="w-5 h-5" /> Profile
+            <User className="w-5 h-5" /> {navbarTranslation("profile")}
           </Link>
 
           <Link
@@ -207,21 +216,22 @@ export default function Navbar({ userId }: { userId: string | undefined }) {
               "/diaries"
             )} hover:bg-gray-100 dark:hover:bg-gray-800 dark:text-gray-200`}
           >
-            <NotebookPen className="w-5 h-5" /> Diaries
+            <NotebookPen className="w-5 h-5" />
+            {navbarTranslation("diaries")}
           </Link>
           <div
             className={`mx-2 py-2 border-b flex items-center transition
              hover:bg-gray-100 cursor-pointer dark:hover:bg-gray-800 dark:text-gray-200`}
             onClick={() => setMobileMenuOpen(false)}
           >
-            <ThemeToggle /> Theme Mode
+            <ThemeToggle /> {mobileNavbarTranslation("themeMode")}
           </div>
           <form action={logout}>
             <button
               onClick={() => setMobileMenuOpen(false)}
               className="w-full px-4 py-3 text-left text-red-500 hover:bg-gray-100 hover:text-red-600 flex items-center gap-2 transition dark:hover:bg-gray-800 dark:text-red-400 dark:hover:text-red-600"
             >
-              <LogOut className="w-5 h-5" /> Log out
+              <LogOut className="w-5 h-5" /> {navbarTranslation("logout")}
             </button>
           </form>
         </div>
@@ -237,7 +247,7 @@ export default function Navbar({ userId }: { userId: string | undefined }) {
                 link.href
               )}`}
             >
-              {link.label}
+              {navbarTranslation(link.label)}
             </Link>
           ))}
         </div>

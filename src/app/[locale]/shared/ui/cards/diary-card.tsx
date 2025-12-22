@@ -5,12 +5,14 @@ import { LineSkeleton } from "../skeletons/skeleton";
 import { formatDate } from "@/lib/serialize";
 import { Button } from "@/app/[locale]/components/ui/button";
 import DiariesButton from "@/app/[locale]/components/diaries-button";
-export default function DiaryCard({
+export default async function DiaryCard({
   diary,
   detailsPage,
+  messages,
 }: {
   diary: diariesType;
   detailsPage?: boolean;
+  messages: any;
 }) {
   return (
     <div
@@ -37,15 +39,19 @@ export default function DiaryCard({
       <div className="flex mt-4 justify-between w-full dark:text-gray-200 flex-wrap gap-4">
         {!detailsPage && (
           <Link href={`/diaries/${diary._id}`}>
-            <Button variant="outline">Read More</Button>
+            <Button variant="outline">{messages?.diaries?.readMore}</Button>
           </Link>
         )}
 
-        <DiariesButton variant="secondary" label="Update Diary" diary={diary} />
+        <DiariesButton
+          variant="secondary"
+          label={messages?.diaries?.updateDiary}
+          diary={diary}
+        />
         <form action={deleteDiary}>
           <input type="hidden" name="diaryId" value={diary._id} />
           <Button type="submit" variant="destructive">
-            Delete Diary
+            {messages?.diaries?.deleteDiary}
           </Button>
         </form>
       </div>

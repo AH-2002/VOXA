@@ -1,4 +1,3 @@
-
 import { getCollection } from "@/lib/db";
 import getAuthUser from "@/lib/getAuthUser";
 import { serializePost, serializeUser } from "@/lib/serialize";
@@ -12,9 +11,12 @@ import PostCard from "../../shared/ui/cards/post-card";
 export default async function ProfilePage({
   params,
 }: {
-  params: Promise<{ id: string }>;
+  params: Promise<{ id: string; locale: string }>;
 }) {
-  const { id } = await params;
+  const { id, locale } = await params;
+  const messages = (
+    await import(`../../../../../locales/${locale}/default.json`)
+  ).default;
   const usersCollection = await getCollection("users");
   const rawUser = (await usersCollection?.findOne({
     _id: new ObjectId(id),
@@ -43,8 +45,12 @@ export default async function ProfilePage({
 
       {user && <ProfileInfoCard user={user} loggedIn={loggedIn} />}
       <div className="flex justify-between w-[75%] mx-auto">
-        <h3 className="text-xl font-semibold mb-4 text-gray-800 dark:text-gray-200">Posts</h3>
-        <PostButton label="Add Post" variant="submit" />
+        <h3 className="text-xl font-semibold mb-4 text-gray-800 dark:text-gray-200">
+          {messages.post.posts}
+        </h3>
+        {user && loggedIn && (
+          <PostButton label={messages.post.addPost} variant="submit" />
+        )}
       </div>
       <div className="space-y-4">
         {posts.length > 0 ? (
@@ -60,9 +66,7 @@ export default async function ProfilePage({
           )
         ) : (
           <div className="flex justify-center items-center mt-5">
-            <p className="text-gray-500">
-              This user hasn’t posted anything yet.
-            </p>
+            <p className="text-gray-500">{messages?.post?.empty}</p>
           </div>
         )}
       </div>

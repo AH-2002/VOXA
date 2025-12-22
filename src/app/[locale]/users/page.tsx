@@ -3,7 +3,14 @@ import UserCard from "../shared/ui/cards/user-card";
 import { dbUserType } from "./types";
 import { serializeUser } from "@/lib/serialize";
 
-export default async function UsersPage() {
+export default async function UsersPage({
+  params,
+}: {
+  params: Promise<{ locale: string }>;
+}) {
+  const locale = (await params).locale;
+  const messages = (await import(`../../../../locales/${locale}/default.json`))
+    .default;
   const usersCollection = await getCollection("users");
   const rawUsers = (await usersCollection
     ?.find()
@@ -15,7 +22,7 @@ export default async function UsersPage() {
   return (
     <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6">
       <h1 className="text-2xl font-bold mb-6 text-gray-800 dark:text-gray-200">
-        Explore Users
+        {messages.users.explore}
       </h1>
       <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
         {users?.map((user) => (

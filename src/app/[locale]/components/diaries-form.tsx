@@ -4,6 +4,7 @@ import { useActionState } from "react";
 import { Button } from "./ui/button";
 import { dbDiariesType } from "../diaries/types";
 import { FormState } from "../shared/types/forms";
+import { useTranslations } from "next-intl";
 
 export default function DiaryForm({
   handler,
@@ -18,7 +19,7 @@ export default function DiaryForm({
     handler,
     undefined
   );
-
+  const diaryTranslation = useTranslations("diaries");
   return (
     <div className="fixed inset-0 z-50 flex items-center justify-center">
       <div
@@ -31,7 +32,9 @@ export default function DiaryForm({
         className="relative z-50 w-[90%] max-w-lg bg-white shadow-2xl rounded-xl p-6 space-y-6 animate-fadeIn dark:bg-zinc-800 dark:text-gray-200"
       >
         <h1 className="text-3xl font-bold text-gray-800 mb-4 dark:text-gray-200">
-          Add your diaries here
+          {handler.name === "createDiary"
+            ? diaryTranslation("addDiary")
+            : diaryTranslation("updateDiary")}
         </h1>
 
         <input
@@ -41,8 +44,11 @@ export default function DiaryForm({
         />
 
         <div className="flex flex-col">
-          <label htmlFor="title" className="mb-2 text-gray-700 font-medium dark:text-gray-200">
-            Title
+          <label
+            htmlFor="title"
+            className="mb-2 text-gray-700 font-medium dark:text-gray-200"
+          >
+            {diaryTranslation("title")}
           </label>
           <input
             type="text"
@@ -52,13 +58,18 @@ export default function DiaryForm({
               focus:outline-none focus:ring-2 focus:ring-blue-400 focus:border-transparent transition dark:bg-zinc-800 dark:text-gray-200 dark:border-zinc-700"
           />
           {state?.errors?.title && (
-            <p className="text-red-500 mt-1 text-sm dark:text-red-400">{state.errors.title}</p>
+            <p className="text-red-500 mt-1 text-sm dark:text-red-400">
+              {state.errors.title}
+            </p>
           )}
         </div>
 
         <div className="flex flex-col">
-          <label htmlFor="content" className="mb-2 text-gray-700 font-medium dark:text-gray-200">
-            Content
+          <label
+            htmlFor="content"
+            className="mb-2 text-gray-700 font-medium dark:text-gray-200"
+          >
+            {diaryTranslation("content")}
           </label>
           <textarea
             name="content"

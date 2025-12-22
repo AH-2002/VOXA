@@ -1,17 +1,72 @@
 {
+  "buttons": {
+    "cancel": "إلغاء",
+    "submit": "إرسال",
+    "submitting": "إرسال"
+  },
+  "diaries": {
+    "addDiary": "أضف يوميات",
+    "content": "محتوى",
+    "deleteDiary": "حذف اليوميات",
+    "empty": "ليس لديك أي مذكرات بعد. ابدأ بإنشاء واحدة",
+    "myDiaries": "مذكراتي",
+    "readMore": "اقرأ المزيد",
+    "title": "عنوان",
+    "updateDiary": "تحديث اليوميات"
+  },
+  "footer": {
+    "content": "شارك أفكارك، وتواصل مع الأصدقاء، واطلع على ما يحدث\n",
+    "copyright": "فوكسا. جميع الحقوق محفوظة"
+  },
+  "login": {
+    "hasAcc": "ليس لديك حساب؟ سجل الآن",
+    "password": "كلمة المرور",
+    "title": "تسجيل الدخول إلى حسابك"
+  },
+  "mobileNavbar": {
+    "home": "الرئيسية",
+    "themeMode": "وضع السمة",
+    "users": "المستخدمون"
+  },
+  "navbar": {
+    "diaries": "دفاتر",
+    "login": "تسجيل الدخول",
+    "logout": "تسجيل الخروج",
+    "profile": "الملف الشخصي",
+    "register": "تسجيل"
+  },
   "post": {
     "Add": "أضف",
     "addPost": "أضف منشور",
     "comment": "تعليق",
+    "content": "محتوى",
     "delete": "حذف",
+    "empty": "لم ينشر هذا المستخدم أي شيء بعد",
     "like": "مثل",
     "Like": "مثل",
     "likes": "إعجابات",
+    "media": "إضافة صورة / فيديو",
     "noComment": "لا توجد تعليقات بعد",
-    "noPosts": "لم يتم العثور على منشورات",
+    "posts": "المشاركات",
     "unlike": "على عكس",
     "Update": "تحديث",
     "updatePost": "تحديث المنشور",
     "writeComment": "اكتب تعليقًا"
+  },
+  "profile": {
+    "confirmPassword": "تأكيد كلمة المرور",
+    "email": "البريد الإلكتروني",
+    "firstName": "الاسم الأول",
+    "lastName": "اسم العائلة",
+    "password": "كلمة المرور",
+    "profilePicture": "صورة الملف الشخصي",
+    "updateProfile": "تحديث الملف الشخصي"
+  },
+  "register": {
+    "hasAcc": "هل لديك حساب بالفعل؟ تسجيل الدخول\n",
+    "title": "أنشئ حسابك"
+  },
+  "users": {
+    "explore": "استكشاف المستخدمين"
   }
 }

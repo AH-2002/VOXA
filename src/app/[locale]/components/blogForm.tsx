@@ -4,6 +4,7 @@ import { useActionState } from "react";
 import { Button } from "./ui/button";
 import { PostType } from "../shared/types/posts";
 import { FormState } from "../shared/types/forms";
+import { useTranslations } from "next-intl";
 
 export default function BlogForm({
   handler,
@@ -18,6 +19,8 @@ export default function BlogForm({
     handler,
     undefined
   );
+  const postTranslation = useTranslations("post");
+  const buttonTranslation = useTranslations("buttons");
 
   return (
     <div className="fixed inset-0 z-50 flex items-center justify-center">
@@ -31,7 +34,7 @@ export default function BlogForm({
         className="relative z-50 w-[90%] max-w-lg bg-white shadow-2xl rounded-xl p-6 space-y-6 animate-fadeIn dark:bg-gray-800"
       >
         <h1 className="text-3xl font-bold text-gray-800 mb-4 dark:text-gray-200">
-          {post ? "Update Post" : "Create Post"}
+          {post ? postTranslation("updatePost") : postTranslation("addPost")}
         </h1>
 
         <input
@@ -45,7 +48,7 @@ export default function BlogForm({
             htmlFor="content"
             className="mb-2 text-gray-700 font-medium dark:text-gray-300"
           >
-            Content
+            {postTranslation("content")}
           </label>
           <textarea
             name="content"
@@ -69,7 +72,7 @@ export default function BlogForm({
         </div>
         <div className="flex flex-col">
           <label className="mb-2 text-gray-700 font-medium dark:text-gray-300">
-            Add Photo / Video
+            {postTranslation("media")}
           </label>
           <input
             type="file"
@@ -90,7 +93,7 @@ export default function BlogForm({
             onClick={onClose}
             className="px-5 py-2 rounded-md bg-gray-200 text-gray-700 hover:bg-gray-300 transition dark:bg-gray-700 dark:text-gray-300 dark:hover:bg-gray-600"
           >
-            Cancel
+            {buttonTranslation("cancel")}
           </Button>
 
           <Button
@@ -100,7 +103,9 @@ export default function BlogForm({
               shadow hover:bg-blue-600 focus:outline-none focus:ring-2 
               focus:ring-blue-400 transition disabled:opacity-50 dark:bg-blue-600 dark:hover:bg-blue-700"
           >
-            {isPending ? "Submitting..." : "Submit"}
+            {isPending
+              ? buttonTranslation("submitting")
+              : buttonTranslation("submit")}
           </Button>
         </div>
       </form>

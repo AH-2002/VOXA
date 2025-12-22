@@ -18,16 +18,18 @@ export default async function RootLayout({
   if (!hasLocale(routing.locales, locale)) {
     notFound();
   }
+  const messages = (await import(`../../../locales/${locale}/default.json`))
+    .default;
   return (
     <html lang="en">
       <body className="min-h-screen flex flex-col bg-gray-100 dark:bg-zinc-900 dark:text-white text-black">
-        <NextIntlClientProvider>
+        <NextIntlClientProvider locale={locale} messages={messages}>
           <ThemeProvider attribute="class" defaultTheme="system" enableSystem>
             <header>
               <Navbar userId={userAuth?.userId} />
             </header>
             <main className="flex-1">{children}</main>
-            <Footer />
+            <Footer messages={messages} />
           </ThemeProvider>
         </NextIntlClientProvider>
       </body>

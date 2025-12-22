@@ -4,6 +4,7 @@ import { useActionState } from "react";
 import { Button } from "./ui/button";
 import { updateProfile } from "@/actions/profile";
 import { UserType } from "../users/types";
+import { useTranslations } from "next-intl";
 
 export default function UpdateProfileForm({
   user,
@@ -12,6 +13,7 @@ export default function UpdateProfileForm({
   user: UserType;
   onClose: () => void;
 }) {
+  const postTranslation = useTranslations("profile");
   const [state, action, isPending] = useActionState(updateProfile, undefined);
 
   return (
@@ -26,12 +28,13 @@ export default function UpdateProfileForm({
         className="relative z-50 w-[90%] max-w-lg bg-white shadow-2xl rounded-xl p-6 space-y-6 dark:bg-gray-800"
       >
         <h1 className="text-3xl font-bold text-gray-800 mb-4 dark:text-gray-200">
-          Update Profile
+          {postTranslation("updateProfile")}
         </h1>
-
         <div className="flex flex-col">
           <input type="hidden" name="userId" value={user?._id?.toString()} />
-          <label className="mb-2 text-gray-700 font-medium dark:text-gray-300">First Name</label>
+          <label className="mb-2 text-gray-700 font-medium dark:text-gray-300">
+            {postTranslation("firstName")}
+          </label>
           <input
             type="text"
             name="first_name"
@@ -39,14 +42,19 @@ export default function UpdateProfileForm({
             className="border border-gray-300 rounded-md px-4 py-2 focus:outline-none focus:ring-2 focus:ring-blue-400 dark:bg-gray-700 dark:text-gray-200"
           />
           {state?.errors?.first_name?.map((err, idx) => (
-            <p key={idx} className="text-red-500 text-sm mt-1 dark:text-red-400">
+            <p
+              key={idx}
+              className="text-red-500 text-sm mt-1 dark:text-red-400"
+            >
               {err}
             </p>
           ))}
         </div>
 
         <div className="flex flex-col">
-          <label className="mb-2 text-gray-700 font-medium dark:text-gray-300">Last Name</label>
+          <label className="mb-2 text-gray-700 font-medium dark:text-gray-300">
+            {postTranslation("lastName")}
+          </label>
           <input
             type="text"
             name="last_name"
@@ -54,13 +62,18 @@ export default function UpdateProfileForm({
             className="border border-gray-300 rounded-md px-4 py-2 focus:outline-none focus:ring-2 focus:ring-blue-400 dark:bg-gray-700 dark:text-gray-200"
           />
           {state?.errors?.last_name?.map((err, idx) => (
-            <p key={idx} className="text-red-500 text-sm mt-1 dark:text-red-400">
+            <p
+              key={idx}
+              className="text-red-500 text-sm mt-1 dark:text-red-400"
+            >
               {err}
             </p>
           ))}
         </div>
         <div className="flex flex-col">
-          <label className="mb-2 text-gray-700 font-medium dark:text-gray-300">Email</label>
+          <label className="mb-2 text-gray-700 font-medium dark:text-gray-300">
+            {postTranslation("email")}
+          </label>
           <input
             type="email"
             name="Email"
@@ -72,7 +85,9 @@ export default function UpdateProfileForm({
         </div>
 
         <div className="flex flex-col">
-          <label className="mb-2 text-gray-700 font-medium dark:text-gray-300">Password</label>
+          <label className="mb-2 text-gray-700 font-medium dark:text-gray-300">
+            {postTranslation("password")}
+          </label>
           <input
             type="password"
             name="password"
@@ -80,14 +95,17 @@ export default function UpdateProfileForm({
             className="border border-gray-300 rounded-md px-4 py-2 focus:outline-none focus:ring-2 focus:ring-blue-400 dark:bg-gray-700 dark:text-gray-200"
           />
           {state?.errors?.password?.map((err, idx) => (
-            <p key={idx} className="text-red-500 text-sm mt-1 dark:text-red-400">
+            <p
+              key={idx}
+              className="text-red-500 text-sm mt-1 dark:text-red-400"
+            >
               {err}
             </p>
           ))}
         </div>
         <div className="flex flex-col">
           <label className="mb-2 text-gray-700 font-medium dark:text-gray-300">
-            Confirm Password
+            {postTranslation("confirmPassword")}
           </label>
           <input
             type="password"
@@ -96,7 +114,10 @@ export default function UpdateProfileForm({
             className="border border-gray-300 rounded-md px-4 py-2 focus:outline-none focus:ring-2 focus:ring-blue-400 dark:bg-gray-700 dark:text-gray-200"
           />
           {state?.errors?.confirmPassword?.map((err, idx) => (
-            <p key={idx} className="text-red-500 text-sm mt-1 dark:text-red-400">
+            <p
+              key={idx}
+              className="text-red-500 text-sm mt-1 dark:text-red-400"
+            >
               {err}
             </p>
           ))}
@@ -104,7 +125,7 @@ export default function UpdateProfileForm({
 
         <div className="flex flex-col">
           <label className="mb-2 text-gray-700 font-medium dark:text-gray-300">
-            Profile Picture
+            {postTranslation("profilePicture")}
           </label>
           <input
             type="file"

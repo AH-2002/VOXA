@@ -3,25 +3,25 @@ import { Home, Users, LogIn, UserPlus } from "lucide-react";
 
 export const navLinks: navLinkType[] = [
   {
-    label: "Home",
+    label: "home",
     href: "/",
     icon: Home,
   },
 
   {
-    label: "Users",
+    label: "users",
     href: "/users",
     icon: Users,
   },
 ];
 export const authLinks: navLinkType[] = [
   {
-    label: "Login",
+    label: "login",
     href: "/login",
     icon: LogIn,
   },
   {
-    label: "Register",
+    label: "register",
     href: "/register",
     icon: UserPlus,
   },

@@ -4,15 +4,20 @@ import Link from "next/link";
 import { useActionState, useState } from "react";
 import { Eye, EyeOff } from "lucide-react";
 import { Button } from "../../components/ui/button";
+import { useTranslations } from "next-intl";
 export default function RegisterPage() {
   const [state, action, isPending] = useActionState(register, undefined);
   const [showPassword, setShowPassword] = useState(false);
   const [showConfirmPassword, setShowConfirmPassword] = useState(false);
+  const registerTranslation = useTranslations("register");
+  const profileTranslation = useTranslations("profile");
+  const loginTranslation = useTranslations("login");
+  const navbarTranslation = useTranslations("navbar");
   return (
     <div className="min-h-screen flex items-center justify-center bg-gray-100 px-4 dark:bg-zinc-900">
       <div className="w-full max-w-md bg-white rounded-lg shadow-lg p-8 dark:bg-zinc-800">
         <h1 className="text-2xl font-bold text-center text-gray-800 mb-6 dark:text-gray-200">
-          Create Your Account
+          {registerTranslation("title")}
         </h1>
 
         <form action={action} className="space-y-5">
@@ -22,7 +27,7 @@ export default function RegisterPage() {
                 htmlFor="first_name"
                 className="mb-1 text-gray-700 font-medium dark:text-gray-200"
               >
-                First Name
+                {profileTranslation("firstName")}
               </label>
               <input
                 type="text"
@@ -44,7 +49,7 @@ export default function RegisterPage() {
                 htmlFor="last_name"
                 className="mb-1 text-gray-700 font-medium dark:text-gray-200"
               >
-                Last Name
+                {profileTranslation("lastName")}
               </label>
               <input
                 type="text"
@@ -67,7 +72,7 @@ export default function RegisterPage() {
               htmlFor="email"
               className="mb-1 text-gray-700 font-medium dark:text-gray-200"
             >
-              Email
+              {loginTranslation("email")}
             </label>
             <input
               type="text"
@@ -87,7 +92,7 @@ export default function RegisterPage() {
               htmlFor="password"
               className="mb-1 text-gray-700 font-medium dark:text-gray-200"
             >
-              Password
+              {loginTranslation("password")}
             </label>
             <input
               type={showPassword ? "text" : "password"}
@@ -123,7 +128,7 @@ export default function RegisterPage() {
               htmlFor="confirmPassword"
               className="mb-1 text-gray-700 font-medium dark:text-gray-200"
             >
-              Confirm Password
+              {profileTranslation("confirmPassword")}
             </label>
             <input
               type={showConfirmPassword ? "text" : "password"}
@@ -158,13 +163,13 @@ export default function RegisterPage() {
               disabled={isPending}
               className="w-full md:w-auto bg-blue-500 text-white font-semibold px-6 py-2 rounded-md shadow hover:bg-blue-600 focus:outline-none focus:ring-2 focus:ring-blue-400 transition disabled:opacity-50 dark:bg-blue-600 dark:hover:bg-blue-700"
             >
-              {isPending ? "Loading..." : "Register"}
+              {isPending ? "Loading..." : navbarTranslation("register")}
             </Button>
             <Link
               href="/login"
               className="text-blue-500 hover:underline text-sm md:text-base text-center dark:text-blue-400"
             >
-              Already have an account? Login
+              {registerTranslation("hasAcc")}
             </Link>
           </div>
         </form>

@@ -1,17 +1,72 @@
 {
+  "buttons": {
+    "cancel": "Cancel",
+    "submit": "Submit",
+    "submitting": "Submitting"
+  },
+  "diaries": {
+    "addDiary": "Add Diary",
+    "content": "Content",
+    "deleteDiary": "Delete Diary",
+    "empty": "You have no diaries yet. Start by creating one",
+    "myDiaries": "My Diaries",
+    "readMore": "Read More",
+    "title": "Title",
+    "updateDiary": "Update Diary"
+  },
+  "footer": {
+    "content": "Share your thoughts, connect with friends, and see what’s happening\n",
+    "copyright": "Voxa. All rights reserved"
+  },
+  "login": {
+    "hasAcc": "Don’t have an account? Register",
+    "password": "Password",
+    "title": "Login to Your Account"
+  },
+  "mobileNavbar": {
+    "home": "Home",
+    "themeMode": "Theme Mode",
+    "users": "Users"
+  },
+  "navbar": {
+    "diaries": "Diaries",
+    "login": "Login",
+    "logout": "Logout",
+    "profile": "Profile",
+    "register": "Register"
+  },
   "post": {
     "Add": "Add",
     "addPost": "Add post",
     "comment": "Comment",
+    "content": "Content",
     "delete": "Delete",
+    "empty": "This user hasn’t posted anything yet",
     "like": "Like",
     "Like": "like",
     "likes": "likes",
+    "media": "Add Photo / Video",
     "noComment": "No comments yet",
-    "noPosts": "No posts found",
+    "posts": "Posts",
     "unlike": "Unlike",
     "Update": "Update",
     "updatePost": "Update post",
     "writeComment": "Write a comment"
+  },
+  "profile": {
+    "confirmPassword": "Confirm Password",
+    "email": "Email",
+    "firstName": "First Name",
+    "lastName": "Last Name",
+    "password": "Password",
+    "profilePicture": "Profile Picture",
+    "updateProfile": "Update Profile"
+  },
+  "register": {
+    "hasAcc": "Already have an account? Login\n",
+    "title": "Create Your Account"
+  },
+  "users": {
+    "explore": "Explore Users"
   }
 }

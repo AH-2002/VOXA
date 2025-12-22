@@ -5,6 +5,7 @@ import { Button } from "./ui/button";
 import { useState } from "react";
 import BlogForm from "./blogForm";
 import { createPost, updatePost } from "@/actions/posts";
+import { useTranslations } from "next-intl";
 
 export default function PostButton({
   post,
@@ -23,10 +24,10 @@ export default function PostButton({
     | "ghost";
 }) {
   const [open, setOpen] = useState(false);
-
+  const postTranslation = useTranslations("post");
   return (
     <>
-      {label.includes("Add") ? (
+      {label.includes(postTranslation("Add")) ? (
         <Button
           variant={variant}
           onClick={() => setOpen(true)}
@@ -43,19 +44,21 @@ export default function PostButton({
           {label}
         </button>
       )}
-      {open && (label.includes("Add") || label.includes("Update")) && (
-        <BlogForm
-          handler={
-            label.includes("Add")
-              ? createPost
-              : label.includes("Update")
-              ? updatePost
-              : null
-          }
-          post={post || null}
-          onClose={() => setOpen(false)}
-        />
-      )}
+      {open &&
+        (label.includes(postTranslation("Add")) ||
+          label.includes(postTranslation("Update"))) && (
+          <BlogForm
+            handler={
+              label.includes(postTranslation("Add"))
+                ? createPost
+                : label.includes("Update")
+                ? updatePost
+                : null
+            }
+            post={post || null}
+            onClose={() => setOpen(false)}
+          />
+        )}
     </>
-  );  
+  );
 }

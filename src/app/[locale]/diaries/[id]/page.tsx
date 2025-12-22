@@ -7,9 +7,10 @@ import DiaryCard from "../../shared/ui/cards/diary-card";
 export default async function DiaryDetails({
   params,
 }: {
-  params: Promise<{ id: string }>;
+  params: Promise<{ id: string,locale: string }>;
 }) {
-  const { id } = await params;
+  const { id, locale } = await params;
+  const messages = (await import(`../../../../../locales/${locale}/default.json`)).default;
   const diariesCollection = await getCollection("diaries");
   const rawDiary = (await diariesCollection?.findOne({
     _id: new ObjectId(id),
@@ -20,7 +21,7 @@ export default async function DiaryDetails({
   }
   return (
     <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6">
-      <DiaryCard detailsPage={true} diary={diary} />
+      <DiaryCard detailsPage={true} diary={diary} messages={messages} />
     </section>
   );
 }

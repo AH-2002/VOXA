@@ -32,7 +32,7 @@ export default function DiariesButton({
         onClick={() => setOpen(true)}
         className="flex items-center gap-2"
       >
-        {label.includes(postTranslation("Add")) ? (
+        {label?.includes(postTranslation("Add")) ? (
           <PlusCircle className="w-5 h-5" />
         ) : null}
         {label}
