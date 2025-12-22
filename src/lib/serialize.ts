@@ -1,6 +1,7 @@
-import { dbDiariesType } from "@/app/diaries/types";
-import { dbPostType } from "@/app/shared/types/posts";
-import { dbUserType } from "@/app/users/types";
+import { dbDiariesType } from "@/app/[locale]/diaries/types";
+import { dbPostType } from "@/app/[locale]/shared/types/posts";
+import { dbUserType } from "@/app/[locale]/users/types";
+
 
 export function serializePost(post: dbPostType) {
   if (!post) return undefined;

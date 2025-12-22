@@ -2,20 +2,24 @@ import { getCollection } from "@/lib/db";
 import { dbUserType, UserType } from "../users/types";
 import { serializeUser } from "@/lib/serialize";
 import UserCard from "../shared/ui/cards/user-card";
+type SearchParams = {
+  q?: string;
+};
 
-export default async function SearchPage({
-  params,
-  searchParams,
-}: {
-  params: { locale: string };
-  searchParams: { q?: string };
-}) {
-  const locale = (await params).locale;
+type RouteParams = {
+  locale: string;
+};
+export default async function SearchPage(props: any) {
+  const { params, searchParams } = props as {
+    params: RouteParams;
+    searchParams: SearchParams;
+  };
+
+  const locale = params.locale;
+  const q = searchParams.q ?? "";
   const messages = (await import(`../../../../locales/${locale}/default.json`))
     .default;
   let users: any;
-  const resolvedParams = await searchParams;
-  const q = (await resolvedParams.q) || "";
   if (q.trim().length > 0) {
     const userCollection = await getCollection("users");
     const rawUsers = (await userCollection
