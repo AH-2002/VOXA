@@ -2,7 +2,7 @@
   "buttons": {
     "cancel": "Cancel",
     "submit": "Submit",
-    "submitting": "Submitting"
+    "submitting": "Submitting..."
   },
   "diaries": {
     "addDiary": "Add Diary",
@@ -20,12 +20,12 @@
   },
   "login": {
     "hasAcc": "Don’t have an account? Register",
-    "password": "Password",
     "title": "Login to Your Account"
   },
   "mobileNavbar": {
+    "dark": "Dark",
     "home": "Home",
-    "themeMode": "Theme Mode",
+    "light": "Light",
     "users": "Users"
   },
   "navbar": {

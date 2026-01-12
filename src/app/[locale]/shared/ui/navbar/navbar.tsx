@@ -11,6 +11,7 @@ import { navLinkType } from "./types";
 import ThemeToggle from "@/app/[locale]/components/theme-toggle";
 import { useTranslations } from "next-intl";
 import LanguageSwitcher from "@/app/[locale]/components/language-switcher";
+import { useTheme } from "next-themes";
 
 export default function Navbar({ userId }: { userId: string | undefined }) {
   const navbarTranslation = useTranslations("navbar");
@@ -21,6 +22,7 @@ export default function Navbar({ userId }: { userId: string | undefined }) {
   const mobileRef = useRef<HTMLDivElement>(null);
   const menuButtonRef = useRef<HTMLButtonElement>(null);
   const currentPath = usePathname();
+  const { resolvedTheme, setTheme } = useTheme();
 
   const isActive = (href: string) =>
     href === currentPath
@@ -88,7 +90,16 @@ export default function Navbar({ userId }: { userId: string | undefined }) {
             {userId && (
               <div className="w-[90%] mx-auto flex gap-5">
                 <SearchBar />
-                <ThemeToggle />
+                <div
+                  onClick={() =>
+                    setTheme(resolvedTheme === "dark" ? "light" : "dark")
+                  }
+                >
+                  <ThemeToggle
+                    mode={resolvedTheme === "dark" ? "light" : "dark"}
+                  />
+                </div>
+
                 <LanguageSwitcher />
               </div>
             )}
@@ -220,20 +231,39 @@ export default function Navbar({ userId }: { userId: string | undefined }) {
             {navbarTranslation("diaries")}
           </Link>
           <div
-            className={`mx-2 py-2 border-b flex items-center transition
-             hover:bg-gray-100 cursor-pointer dark:hover:bg-gray-800 dark:text-gray-200`}
-            onClick={() => setMobileMenuOpen(false)}
+            onClick={() =>
+              setTheme(resolvedTheme === "dark" ? "light" : "dark")
+            }
           >
-            <ThemeToggle /> {mobileNavbarTranslation("themeMode")}
-          </div>
-          <form action={logout}>
-            <button
+            <div
+              className={`py-2 border-b flex items-center transition
+             hover:bg-gray-100 cursor-pointer dark:hover:bg-gray-800 dark:text-gray-200`}
               onClick={() => setMobileMenuOpen(false)}
-              className="w-full px-4 py-3 text-left text-red-500 hover:bg-gray-100 hover:text-red-600 flex items-center gap-2 transition dark:hover:bg-gray-800 dark:text-red-400 dark:hover:text-red-600"
             >
-              <LogOut className="w-5 h-5" /> {navbarTranslation("logout")}
-            </button>
-          </form>
+              <div className="ms-2">
+                <ThemeToggle
+                  mode={resolvedTheme === "dark" ? "light" : "dark"}
+                />
+              </div>
+              <span>
+                {mobileNavbarTranslation(
+                  resolvedTheme === "dark" ? "light" : "dark"
+                )}
+              </span>
+            </div>
+          </div>
+
+          <div className="flex justify-between items-center py-3 gap-2">
+            <form action={logout} className="w-[90%]">
+              <button
+                onClick={() => setMobileMenuOpen(false)}
+                className="w-full px-4 py-3 text-left text-red-500 hover:bg-gray-100 hover:text-red-600 flex items-center gap-2 transition dark:hover:bg-gray-800 dark:text-red-400 dark:hover:text-red-600"
+              >
+                <LogOut className="w-5 h-5" /> {navbarTranslation("logout")}
+              </button>
+            </form>
+            <div className="mr-3">{<LanguageSwitcher />}</div>
+          </div>
         </div>
       )}
 

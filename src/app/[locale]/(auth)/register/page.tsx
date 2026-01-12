@@ -13,6 +13,7 @@ export default function RegisterPage() {
   const profileTranslation = useTranslations("profile");
   const loginTranslation = useTranslations("login");
   const navbarTranslation = useTranslations("navbar");
+  const buttonTranslation = useTranslations("buttons");
   return (
     <div className="min-h-screen flex items-center justify-center bg-gray-100 px-4 dark:bg-zinc-900">
       <div className="w-full max-w-md bg-white rounded-lg shadow-lg p-8 dark:bg-zinc-800">
@@ -72,7 +73,7 @@ export default function RegisterPage() {
               htmlFor="email"
               className="mb-1 text-gray-700 font-medium dark:text-gray-200"
             >
-              {loginTranslation("email")}
+              {profileTranslation("email")}
             </label>
             <input
               type="text"
@@ -163,7 +164,9 @@ export default function RegisterPage() {
               disabled={isPending}
               className="w-full md:w-auto bg-blue-500 text-white font-semibold px-6 py-2 rounded-md shadow hover:bg-blue-600 focus:outline-none focus:ring-2 focus:ring-blue-400 transition disabled:opacity-50 dark:bg-blue-600 dark:hover:bg-blue-700"
             >
-              {isPending ? "Loading..." : navbarTranslation("register")}
+              {isPending
+                ? buttonTranslation("submitting")
+                : navbarTranslation("register")}
             </Button>
             <Link
               href="/login"
